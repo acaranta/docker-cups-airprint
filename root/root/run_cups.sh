@@ -20,6 +20,11 @@ if [ `ls -l /config/printers.conf 2>/dev/null | wc -l` -eq 0 ]; then
 fi
 cp /config/printers.conf /etc/cups/printers.conf
 
+if [ -f /config/cups-pdf.conf ]; then
+    cp /config/cups-pdf.conf /etc/cups/cups-pdf.conf
+fi
+
+cp /config/printers.conf /etc/cups/printers.conf
 /etc/init.d/dbus start
 /usr/sbin/avahi-daemon --daemonize
 /root/printer-update.sh &
